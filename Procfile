@@ -1,0 +1,1 @@
+web: gunicorn churchproject.wsgi

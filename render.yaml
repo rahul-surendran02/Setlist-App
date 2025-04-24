@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: churchproject
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn churchproject.wsgi"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: churchproject.settings
+      - key: SECRET_KEY
+        generateValue: true
