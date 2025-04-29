@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import songDB, admin_registerDB
 
-# Register your models here.
+admin.site.register(songDB)
+admin.site.register(admin_registerDB)
