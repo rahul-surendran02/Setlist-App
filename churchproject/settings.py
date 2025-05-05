@@ -27,7 +27,7 @@ DEBUG = True
 
 import os
 
-ALLOWED_HOSTS = ['setlist-app-lgg3.onrender.com']
+ALLOWED_HOSTS = []
 
 # Add Render.com domain during deployment
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')

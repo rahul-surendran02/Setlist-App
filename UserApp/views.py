@@ -6,11 +6,16 @@ from django.contrib import messages
 from AdminApp.views import main_page
 # Create your views here.
 def index_user(req):
+    if 'username' not in req.session:
+        return redirect(user_register)
+    
     x = datetime.now()
     songs=songDB.objects.count()
     return render(req,"index_user.html",{'x':x,'songs':songs})
 
 def display_songs_user(req):
+    if 'username' not in req.session:
+        return redirect(user_register)
     song_data=songDB.objects.all()
     return render(req,"display_songs_user.html",{'song_data':song_data})
 def user_register(req):
@@ -47,7 +52,6 @@ def user_login(request):
         messages.warning(request, "Invalid Credentials...!")
         return redirect(user_register)
 def user_logout(request):
-    del request.session['username']
-    del request.session['password']
+    request.session.flush()
     messages.success(request, "Logout Successfully...")
     return redirect(user_register)

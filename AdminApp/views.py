@@ -6,13 +6,20 @@ from UserApp.models import user_registerDB
 
 # Create your views here.
 def index(req):
+    if 'username' not in req.session:
+        return redirect(admin_register)
+    
     x = datetime.now()
     songs = songDB.objects.count()
     users= user_registerDB.objects.count()
     return render(req,"index.html",{'x':x,'songs':songs,'users':users})
 def add_songs(req):
+    if 'username' not in req.session:
+        return redirect(admin_register)
     return render(req,"add_songs.html")
 def save_songs(request):
+    if 'username' not in request.session:
+        return redirect(admin_register)
     if request.method=="POST":
         action = request.POST.get('action')
 
@@ -29,12 +36,18 @@ def save_songs(request):
         return redirect(index)
 
 def display_songs_admin(req):
+    if 'username' not in req.session:
+        return redirect(admin_register)
     song_data=songDB.objects.all()
     return render(req,"display_songs_admin.html",{'song_data':song_data})
 def edit_songs(req,song_id):
+    if 'username' not in req.session:
+        return redirect(admin_register)
     song_data=songDB.objects.get(id=song_id)
     return render(req,"edit_songs.html",{'song_data':song_data})
 def update_songs(req,song_id):
+    if 'username' not in req.session:
+        return redirect(admin_register)
     if req.method=="POST":
 
         action = req.POST.get('action')
@@ -56,6 +69,8 @@ def update_songs(req,song_id):
         messages.success(req, "song details updated successfully...!")
         return redirect(display_songs_admin)
 def delete_songs(req,del_song_ID):
+    if 'username' not in req.session:
+        return redirect(admin_register)
     x=songDB.objects.filter(id=del_song_ID)
     x.delete()
     messages.error(req, "song deleted...!")
@@ -99,8 +114,7 @@ def admin_login(request):
         messages.warning(request, "Invalid Credentials...!")
         return redirect(admin_register)
 def admin_logout(request):
-    del request.session['username']
-    del request.session['password']
+    request.session.flush()
     messages.success(request, "Logout Successfully...")
     return redirect(admin_register)
 
