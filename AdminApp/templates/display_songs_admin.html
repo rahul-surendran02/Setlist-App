@@ -11,22 +11,20 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Song Details</h4>
-<!--                  <p class="card-description">-->
-<!--                    Add class <code>.table-striped</code>-->
-<!--                  </p>-->
+
                   <div class="table-responsive">
                     <table class="table table-striped">
                       <thead>
                         <tr>
+                          <th>
+                            Date
+                          </th>
                           <th>
                             Song Name
                           </th>
                           <th>
                             Song Description
                           </th>
-<!--                          <th>-->
-<!--                            Category Image-->
-<!--                          </th>-->
                           <th>
                             Action
                           </th>
@@ -35,11 +33,9 @@
                       <tbody>
                       {% for d in song_data %}
                         <tr>
+                          <td>{{d.date}}</td>
                           <td>{{d.song}}</td>
                           <td>{{d.des}}</td>
-<!--                          <td>-->
-<!--                            <img src="{{d.cat_image.url}}" style="width:70px;height:60px;">-->
-<!--                          </td>-->
                           <td>
                             <a href="{% url 'edit_songs' song_id=d.id %}">
                               <button class="btn btn-success">Edit</button>

@@ -14,12 +14,19 @@ def add_songs(req):
     return render(req,"add_songs.html")
 def save_songs(request):
     if request.method=="POST":
-        a=request.POST.get('song')
-        b=request.POST.get('des')
-        obj=songDB(song=a,des=b)
+        action = request.POST.get('action')
+
+        if action == "Cancel":
+            messages.info(request, "Song addition cancelled.")
+            return redirect('add_songs')
+        
+        a=request.POST.get('date') or None
+        b=request.POST.get('song')
+        c=request.POST.get('des')
+        obj=songDB(date=a,song=b,des=c)
         obj.save()
         messages.success(request,"your song saved successfully...!")
-        return redirect(add_songs)
+        return redirect(index)
 
 def display_songs_admin(req):
     song_data=songDB.objects.all()
@@ -27,17 +34,25 @@ def display_songs_admin(req):
 def edit_songs(req,song_id):
     song_data=songDB.objects.get(id=song_id)
     return render(req,"edit_songs.html",{'song_data':song_data})
-def update_songs(req,song_ID):
+def update_songs(req,song_id):
     if req.method=="POST":
-        a = req.POST.get('song')
-        b = req.POST.get('des')
+
+        action = req.POST.get('action')
+
+        if action == "Cancel":
+            messages.info(req, "Song updation cancelled.")
+            return redirect('edit_songs', song_id=song_id)
+        
+        a = req.POST.get('date')
+        b = req.POST.get('song')
+        c = req.POST.get('des')
         # try:
         #     img=req.FILES['image']
         #     fs=FileSystemStorage()
         #     file=fs.save(img.name,img)
         # except MultiValueDictKeyError:
         #     file=categoryDB.objects.get(id=cat_ID).cat_image
-        songDB.objects.filter(id=song_ID).update(song=a,des=b)
+        songDB.objects.filter(id=song_id).update(date=a,song=b,des=c)
         messages.success(req, "song details updated successfully...!")
         return redirect(display_songs_admin)
 def delete_songs(req,del_song_ID):

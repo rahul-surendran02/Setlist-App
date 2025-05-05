@@ -11,26 +11,24 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">ADD SONGS</h4>
-<!--                  <p class="card-description">-->
-<!--                    Basic form layout-->
-<!--                  </p>-->
                   <form class="forms-sample" method="post" action="{% url 'save_songs' %}" enctype="multipart/form-data">
                       {% csrf_token %}
                     <div class="form-group">
+                      <label for="exampleInputdate1">Date</label>
+                      <input type="date" class="form-control" id="exampleInputdate1" name="date" style="width: 200px;" required>
+                    </div>
+                    <div class="form-group">
                       <label for="exampleInputUsername1">Song Name</label>
-                      <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Song Name" name="song">
+                      <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Song Name" name="song" required>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Description</label>
-<!--                      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Description" name="des">-->
+
                         <textarea class="form-control" id="exampleInputEmail1" placeholder="Description about song" name="des" style="height:100px;"></textarea>
                     </div>
-<!--                    <div class="form-group">-->
-<!--                      <label for="exampleImage">Category Image</label>-->
-<!--                      <input type="file" class="form-control" id="exampleImage" placeholder="Upload Image" name="image">-->
-<!--                    </div>-->
-                    <button type="submit" class="btn btn-primary mr-2">ADD</button>
-                    <button class="btn btn-light">Cancel</button>
+
+                    <button type="submit" name="action" class="btn btn-primary mr-2" value="ADD">ADD</button>
+                    <button type="submit" name="action" class="btn btn-light" value="Cancel">Cancel</button>
                   </form>
                 </div>
               </div>

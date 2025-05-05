@@ -10,11 +10,7 @@
 		<form method="post" action="{% url 'save_user_register' %}">
 			{% csrf_token %}
 			<h1>Create Account</h1>
-<!--			<div class="social-container">-->
-<!--				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>-->
-<!--				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>-->
-<!--				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>-->
-<!--			</div>-->
+
 			<span>or use your email for registration</span>
 			<input type="text" name="username" placeholder="Username" />
 			<input type="email" name="email" placeholder="Email" />
@@ -28,15 +24,10 @@
 		<form method="post" action="{% url 'user_login' %}">
 			{% csrf_token %}
 			<h1>Sign in</h1>
-<!--			<div class="social-container">-->
-<!--				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>-->
-<!--				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>-->
-<!--				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>-->
-<!--			</div>-->
+
 			<span>or use your account</span>
 			<input type="text" placeholder="Username" name="username"/>
 			<input type="password" placeholder="Password" name="password"/>
-<!--			<a href="#">Forgot your password?</a>-->
 			<button type="submit">Sign In</button>
 		</form>
 	</div>
@@ -59,12 +50,7 @@
 	<button class="btn btn-success" style="margin-top:40px;">Back To Home</button>
 </a>
 <footer>
-<!--	<p>-->
-<!--		Created with <i class="fa fa-heart"></i> by-->
-<!--		<a target="_blank" href="https://florin-pop.com">Florin Pop</a>-->
-<!--		- Read how I created this and how you can join the challenge-->
-<!--		<a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.-->
-<!--	</p>-->
+
 </footer>
 <style>
     @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');

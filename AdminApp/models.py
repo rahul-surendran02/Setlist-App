@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 class songDB(models.Model):
+    date = models.DateField(null=True, blank=True)
     song=models.CharField(max_length=200,null=True,blank=True)
     des=models.CharField(max_length=500,null=True,blank=True)
 
