@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-l)!t$w=&ny_rb1-=x0y^bly-q0ivwudouv=dv6nis!8g5p_rb(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['setlist-app-t1kx.onrender.com', 'www.setlist-app-t1kx.onrender.com']
 
 # Application definition
 
