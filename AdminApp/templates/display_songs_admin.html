@@ -8,14 +8,14 @@
 </head>
 <body>
 <div class="col-lg-12 grid-margin stretch-card" style="margin-top:30px;">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Song Details</h4>
+              <div class="card" style="border: none;">
+                <div class="card-body" style="background:#161719;">
+                  <h4 class="card-title" style="color: blueviolet;">Song Details</h4>
 
                   <div class="table-responsive">
                     <table class="table table-striped">
                       <thead>
-                        <tr>
+                        <tr style="color: #cccccc;">
                           <th>
                             Date
                           </th>
@@ -32,10 +32,10 @@
                       </thead>
                       <tbody>
                       {% for d in song_data %}
-                        <tr>
+                        <tr style="background-color: #22262a; color: #cccccc;">
                           <td>{{d.date}}</td>
                           <td>{{d.song}}</td>
-                          <td>{{d.des}}</td>
+                          <td><a href="{{ d.des }}" target="_blank">{{ d.des }}</a></td>
                           <td>
                             <a href="{% url 'edit_songs' song_id=d.id %}">
                               <button class="btn btn-success">Edit</button>

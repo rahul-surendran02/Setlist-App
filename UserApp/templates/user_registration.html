@@ -12,22 +12,22 @@
 			<h1>Create Account</h1>
 
 			<span>or use your email for registration</span>
-			<input type="text" name="username" placeholder="Username" />
-			<input type="email" name="email" placeholder="Email" />
-			<input type="text" name="mobile" id="" placeholder="Mobile Number">
-			<input type="password" name="password" placeholder="Password" />
-			<input type="password" name="confirmpwd" placeholder="Confirm Password" />
+			<input type="text" name="username" placeholder="Username" required/>
+			<input type="email" name="email" placeholder="Email" required/>
+			<input type="text" name="mobile" id="" placeholder="Mobile Number"required/>
+			<input type="password" name="password" placeholder="Password" required/>
+			<input type="password" name="confirmpwd" placeholder="Confirm Password" required/>
 			<button type="submit">Sign Up</button>
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
 		<form method="post" action="{% url 'user_login' %}">
 			{% csrf_token %}
-			<h1>Sign in</h1>
+			<h1 style="color: white;">Sign in</h1>
 
-			<span>or use your account</span>
-			<input type="text" placeholder="Username" name="username"/>
-			<input type="password" placeholder="Password" name="password"/>
+			<span style="color: white;">or use your account</span>
+			<input type="text" placeholder="Username" name="username" required/>
+			<input type="password" placeholder="Password" name="password" required/>
 			<button type="submit">Sign In</button>
 		</form>
 	</div>
@@ -60,7 +60,7 @@
 }
 
 body {
-	background: #f6f5f7;
+	background: linear-gradient(135deg,  #313131,#000000);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -71,6 +71,7 @@ body {
 }
 
 h1 {
+	color: #cccccc;
 	font-weight: bold;
 	margin: 0;
 }
@@ -88,6 +89,7 @@ p {
 }
 
 span {
+	color: #cccccc;
 	font-size: 12px;
 }
 
@@ -125,7 +127,7 @@ button.ghost {
 }
 
 form {
-	background-color: #FFFFFF;
+	background: linear-gradient(135deg,  #000000,#303030);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -138,6 +140,7 @@ form {
 input {
 	background-color: #eee;
 	border: none;
+	border-radius: 5px;
 	padding: 12px 15px;
 	margin: 8px 0;
 	width: 100%;
@@ -146,8 +149,6 @@ input {
 .container {
 	background-color: #fff;
 	border-radius: 10px;
-  	box-shadow: 0 14px 28px rgba(0,0,0,0.25),
-			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
 	width: 768px;

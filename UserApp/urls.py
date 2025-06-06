@@ -2,7 +2,6 @@ from UserApp import views
 from django.urls import path
 urlpatterns=[
     path('index_user/',views.index_user,name="index_user"),
-    path('display_songs_user/', views.display_songs_user, name="display_songs_user"),
     path('user_register/', views.user_register, name="user_register"),
     path('save_user_register/', views.save_user_register, name="save_user_register"),
     path('user_login/', views.user_login, name="user_login"),

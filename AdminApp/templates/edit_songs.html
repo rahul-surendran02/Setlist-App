@@ -8,22 +8,22 @@
 </head>
 <body>
 <div class="col-md-12 grid-margin stretch-card" style="margin-top:30px;">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">EDIT ADDED SONGS</h4>
+              <div class="card" style="border: none;">
+                <div class="card-body"  style="background: #161719;">
+                  <h4 class="card-title" style="color: blueviolet;">EDIT ADDED SONGS</h4>
                   <form class="forms-sample" method="post" action="{% url 'update_songs' song_id=song_data.id %}" enctype="multipart/form-data">
                       {% csrf_token %}
                     <div class="form-group">
-                      <label for="exampleInputdate1">Date</label>
-                      <input type="date" class="form-control" id="exampleInputdate1" name="date" style="width: 200px;" required>
+                      <label for="exampleInputdate1" style="color: #cccccc;">Date</label>
+                      <input type="date" class="form-control" id="exampleInputdate1" name="date" style="width: 200px; background:#171a1d; border-color: rgb(97, 55, 136);" required>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputUsername1">Song Name</label>
-                      <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Song Name" name="song" value="{{song_data.song}}" required>
+                      <label for="exampleInputUsername1" style="color: #cccccc;">Song Name</label>
+                      <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Song Name" name="song" value="{{song_data.song}}" style=" width: 500px; background:#171a1d; border-color: rgb(97, 55, 136); color: #cccccc;" required>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Description</label>
-                        <textarea class="form-control" id="exampleInputEmail1" placeholder="Description about song" name="des" style="height:100px;">{{song_data.des}}</textarea>
+                      <label for="exampleInputEmail1" style="color: #cccccc;">Song Link</label>
+                        <textarea class="form-control" id="exampleInputEmail1" placeholder="Add song link" name="des" style="width: 700px; height:100px; background:#171a1d; border-color: rgb(97, 55, 136); color: #cccccc;">{{song_data.des}}</textarea>
                     </div>
                     <button type="submit" name="action" value="UPDATE" class="btn btn-primary mr-2">UPDATE</button>
                     <button type="submit" name="action" value="Cancel" class="btn btn-light">Cancel</button>

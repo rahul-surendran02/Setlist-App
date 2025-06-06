@@ -10,14 +10,9 @@ def index_user(req):
         return redirect(user_register)
     
     x = datetime.now()
-    songs=songDB.objects.count()
-    return render(req,"index_user.html",{'x':x,'songs':songs})
+    song_data = songDB.objects.all()
+    return render(req, "index_user.html", {'x': x, 'song_data': song_data})
 
-def display_songs_user(req):
-    if 'username' not in req.session:
-        return redirect(user_register)
-    song_data=songDB.objects.all()
-    return render(req,"display_songs_user.html",{'song_data':song_data})
 def user_register(req):
     return render(req,"user_registration.html")
 
@@ -28,10 +23,18 @@ def save_user_register(request):
         c=request.POST.get('mobile')
         d=request.POST.get('password')
         e=request.POST.get('confirmpwd')
+
+        if d != e:
+            messages.error(request, "Password and Confirm Password do not match.")
+            return redirect('user_register')
+        
         if user_registerDB.objects.filter(username=a).exists():
             messages.warning(request,"Username already exists..!")
+            return redirect('user_register')
+        
         elif user_registerDB.objects.filter(email=b).exists():
             messages.warning(request,"Email Id already exists..!")
+            return redirect('user_register')
         obj=user_registerDB(username=a,email=b,mobile=c,password=d,confirmpwd=e)
         obj.save()
         return redirect(user_register)
@@ -46,12 +49,12 @@ def user_login(request):
             return redirect(index_user)
 
         else:
-            messages.warning(request, "Invalid Password...!")
-            return redirect(user_register)
+            messages.warning(request, "Invalid Username or Password...!")
+            return redirect('user_register')
     else:
         messages.warning(request, "Invalid Credentials...!")
-        return redirect(user_register)
+        return redirect('user_register')
 def user_logout(request):
     request.session.flush()
     messages.success(request, "Logout Successfully...")
-    return redirect(user_register)
+    return redirect('user_register')

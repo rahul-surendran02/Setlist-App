@@ -81,19 +81,31 @@ def admin_register(request):
     return render(request,"admin_registration.html")
 def save_admin_register(request):
     admin_count = admin_registerDB.objects.count()
-    # if admin_count = 1:
-    #     messages.error(request, "Only one admin is allowed in the system. Contact support.")
-    #     return redirect(admin_register)
+
+   # Restrict multiple admin registrations
+    if admin_count == 1:
+        messages.error(request, "Only one admin is allowed in the system.")
+        return redirect(admin_register)
+    
     if request.method=="POST":
         a=request.POST.get('username')
         b=request.POST.get('email')
         c=request.POST.get('mobile')
         d=request.POST.get('password')
         e=request.POST.get('confirmpwd')
+
+        if d != e:
+            messages.error(request, "Password/Confirm Password do not match.")
+            return redirect(admin_register)
+        
         if admin_registerDB.objects.filter(username=a).exists():
             messages.warning(request,"Username already exists..!")
+            return redirect(admin_register)
+        
         elif admin_registerDB.objects.filter(email=b).exists():
             messages.warning(request,"Email Id already exists..!")
+            return redirect(admin_register)
+        
         obj=admin_registerDB(username=a,email=b,mobile=c,password=d,confirmpwd=e)
         obj.save()
         return redirect(admin_register)
@@ -108,7 +120,7 @@ def admin_login(request):
             return redirect(index)
 
         else:
-            messages.warning(request, "Invalid Password...!")
+            messages.warning(request, "Invalid Username or Password...!")
             return redirect(admin_register)
     else:
         messages.warning(request, "Invalid Credentials...!")
