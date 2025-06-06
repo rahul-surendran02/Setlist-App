@@ -24,7 +24,7 @@ def save_songs(request):
         action = request.POST.get('action')
 
         if action == "Cancel":
-            messages.info(request, "Song addition cancelled.")
+            messages.info(request, "Song addition cancelled..!")
             return redirect('add_songs')
         
         a=request.POST.get('date') or None
@@ -32,7 +32,7 @@ def save_songs(request):
         c=request.POST.get('des')
         obj=songDB(date=a,song=b,des=c)
         obj.save()
-        messages.success(request,"your song saved successfully...!")
+        messages.success(request," Song saved successfully..!")
         return redirect(index)
 
 def display_songs_admin(req):
@@ -53,7 +53,7 @@ def update_songs(req,song_id):
         action = req.POST.get('action')
 
         if action == "Cancel":
-            messages.info(req, "Song updation cancelled.")
+            messages.info(req, "Song updation cancelled..!")
             return redirect('edit_songs', song_id=song_id)
         
         a = req.POST.get('date')
@@ -66,14 +66,14 @@ def update_songs(req,song_id):
         # except MultiValueDictKeyError:
         #     file=categoryDB.objects.get(id=cat_ID).cat_image
         songDB.objects.filter(id=song_id).update(date=a,song=b,des=c)
-        messages.success(req, "song details updated successfully...!")
+        messages.success(req, "Song updated successfully..!")
         return redirect(display_songs_admin)
 def delete_songs(req,del_song_ID):
     if 'username' not in req.session:
         return redirect(admin_register)
     x=songDB.objects.filter(id=del_song_ID)
     x.delete()
-    messages.error(req, "song deleted...!")
+    messages.error(req, "Song deleted..!")
     return redirect(display_songs_admin)
 
 
@@ -84,7 +84,7 @@ def save_admin_register(request):
 
    # Restrict multiple admin registrations
     if admin_count == 1:
-        messages.error(request, "Only one admin is allowed in the system.")
+        messages.error(request, "Only one admin is allowed in the system")
         return redirect(admin_register)
     
     if request.method=="POST":
@@ -95,7 +95,7 @@ def save_admin_register(request):
         e=request.POST.get('confirmpwd')
 
         if d != e:
-            messages.error(request, "Password/Confirm Password do not match.")
+            messages.error(request, "Passwords do not match..!")
             return redirect(admin_register)
         
         if admin_registerDB.objects.filter(username=a).exists():
@@ -116,7 +116,7 @@ def admin_login(request):
         if admin_registerDB.objects.filter(username=un,password=pwd).exists():
             request.session['username'] = un
             request.session['password'] = pwd
-            messages.success(request,"Welcome to Admin Dashboard...")
+            messages.success(request,"Welcome to Harmony Hub...!")
             return redirect(index)
 
         else:
@@ -127,7 +127,7 @@ def admin_login(request):
         return redirect(admin_register)
 def admin_logout(request):
     request.session.flush()
-    messages.success(request, "Logout Successfully...")
+    messages.success(request, "Logout Successfully...!")
     return redirect(admin_register)
 
 def main_page(req):
