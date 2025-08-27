@@ -14,7 +14,7 @@ A Django-based web application for managing choir song playlists, with responsiv
 - Deployment: Hosted live on Render for easy access and testing.
 - Mobile App: Android app built via Android Studio connecting to live URL, with APK generation and customizable app icon.
 
-- # Technologies Used
+# Technologies Used
 
 - Backend: Django Framework
 - Frontend: HTML, CSS, Bootstrap 5, JavaScript
